@@ -165,7 +165,7 @@ document.querySelectorAll('[data-n]').forEach(n=>co.observe(n));
 document.querySelectorAll('input[type=tel]').forEach(i=>i.addEventListener('input',()=>{let d=i.value.replace(/\D/g,'');if(d.startsWith('38'))d=d.slice(2);d=d.slice(0,10);let o='+38';if(d.length)o+=' ('+d.slice(0,3);if(d.length>=3)o+=') '+d.slice(3,6);if(d.length>=6)o+='-'+d.slice(6,8);if(d.length>=8)o+='-'+d.slice(8,10);i.value=d.length?o:''}));
 document.querySelectorAll('.js-form').forEach(f=>f.addEventListener('submit',async e=>{e.preventDefault();const p=f.phone,er=f.querySelector('.er'),ok=p.value.replace(/\D/g,'').length>=12;er.textContent='Введіть коректний номер';er.style.display=ok?'none':'block';if(!ok||f.hp.value)return;
 const fd=new FormData(f),data=Object.fromEntries(fd);data.svc=fd.getAll("svc");data.page=location.href;const bt=f.querySelector('button[type=submit]');bt.disabled=true;let sent=false;
-try{if(FORM_URL){const r=await fetch(FORM_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});sent=r.ok}}catch(x){}
+try{if(FORM_URL){const r=await fetch(FORM_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});sent=r.ok;if(!r.ok)console.error('Worker',r.status,await r.text())}}catch(x){console.error('Form fetch error',x)}
 bt.disabled=false;if(!sent){er.textContent='Не вдалося надіслати заявку. Будь ласка, зателефонуйте нам.';er.style.display='block';return}
 ev('form_submit');[...f.children].forEach(c=>c.style.display='none');f.querySelector('.ok').style.display='block'}));
 
