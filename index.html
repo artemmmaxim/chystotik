@@ -154,7 +154,7 @@ footer{background:#071a33;color:#B7C6D6;padding:44px 0 110px;font-size:15px}foot
 
 <script>
 window.dataLayer=window.dataLayer||[];const ev=n=>dataLayer.push({event:n});
-const FORM_URL=""; /* СЮДИ вставте адресу Cloudflare Worker (див. telegram-worker.js) */
+const FORM_URL="https://chystotik-telegram.arte-mmm-axim.workers.dev/";
 document.querySelectorAll('[data-ev]').forEach(a=>a.addEventListener('click',()=>ev(a.dataset.ev)));
 const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('s',scrollY>10),{passive:true});
 const nv=document.getElementById('nv');document.getElementById('bg').onclick=()=>nv.classList.toggle('o');nv.onclick=()=>nv.classList.remove('o');
